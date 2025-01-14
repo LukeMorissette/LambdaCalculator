@@ -1,6 +1,7 @@
 # LambdaCalculator
 
 A command-line _lambda calculator_ designed to mimic elements of a programming language. It supports conditional statements (if/else), for-loops, and basic arithmetic operations.
+It was adapted from work done by Alex Kurz from the repository: https://codeberg.org/alexhkurz/lambdaF-2024
 
 ## Features
 
