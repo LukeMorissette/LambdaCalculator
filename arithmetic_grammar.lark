@@ -1,0 +1,24 @@
+
+?start: exp
+
+?exp: exp "+" term                          -> add
+     | exp "-" term                          -> sub
+     | exp "<=" exp                          -> leq
+     | exp "==" exp                          -> eq
+     | "if" exp "then" exp "else" exp        -> conditional
+     | term
+
+?term: term "*" factor                      -> mul
+      | term "/" factor                      -> div
+      | factor
+
+?factor: "-" factor                         -> neg
+        | atom
+
+?atom: NUMBER                               -> number
+      | "(" exp ")"
+
+NUMBER: /\d+(\.\d+)?/
+
+%import common.WS
+%ignore WS
