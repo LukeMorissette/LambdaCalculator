@@ -1,0 +1,49 @@
+True | interpreter | Input: \x.(\y.y)x | Expected: (\x.((\y.y) x)) | Output: (\x.((\y.y) x)) 
+True | interpreter | Input: (\x.a x) ((\x.x)b) | Expected: (a ((\x.x) b)) | Output: (a ((\x.x) b)) 
+True | interpreter | Input: (\x.x) (1--2) | Expected: 3.0 | Output: 3.0 
+True | interpreter | Input: (\x.x) (1---2) | Expected: -1.0 | Output: -1.0 
+True | interpreter | Input: (\x.x + 1) 5 | Expected: 6.0 | Output: 6.0 
+True | interpreter | Input: (\x.x * x) 3 | Expected: 9.0 | Output: 9.0 
+True | interpreter | Input: (\x.\y.x + y) 3 4 | Expected: 7.0 | Output: 7.0 
+True | interpreter | Input: (\x.x * x) 2 * 3 | Expected: 12.0 | Output: 12.0 
+True | interpreter | Input: (\x.x * x) (-2) * (-3) | Expected: -12.0 | Output: -12.0 
+True | interpreter | Input: ((\x.x * x) (-2)) * (-3) | Expected: -12.0 | Output: -12.0 
+True | interpreter | Input: (\x.x) (---2) | Expected: -2.0 | Output: -2.0 
+True | interpreter | Input: if 0 then 2 else 1 | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: if 1 then 2 else 2 | Expected: 2.0 | Output: 2.0 
+True | interpreter | Input: if 0 then 2 else if 1 then 3 else 4 | Expected: 3.0 | Output: 3.0 
+True | interpreter | Input: if 0 then 2 else if 0 then 3 else 4 | Expected: 4.0 | Output: 4.0 
+True | interpreter | Input: if 0 == 0 then 5 else 6 | Expected: 5.0 | Output: 5.0 
+True | interpreter | Input: if 0 <= 1 then 6 else 7 | Expected: 6.0 | Output: 6.0 
+True | interpreter | Input: if 1 <= 0 then 6 else 7 | Expected: 7.0 | Output: 7.0 
+True | interpreter | Input: let x = 1 in if x == 1 then 8 else 9 | Expected: 8.0 | Output: 8.0 
+True | interpreter | Input: let x = 0 in if x == 1 then 8 else 9 | Expected: 9.0 | Output: 9.0 
+True | interpreter | Input: let f = \x.x in f 10 | Expected: 10.0 | Output: 10.0 
+True | interpreter | Input: let f = \x.x+1 in f 10 | Expected: 11.0 | Output: 11.0 
+True | interpreter | Input: let f = \x.x*6 in let g = \x.x+1 in f (g 1) | Expected: 12.0 | Output: 12.0 
+True | interpreter | Input: let f = \x.x*6 in let g = \x.x+1 in g (f 2) | Expected: 13.0 | Output: 13.0 
+True | interpreter | Input: let f = \x.x*6 in let f = \x.x+1 in f (f 2) + 10 | Expected: 14.0 | Output: 14.0 
+True | interpreter | Input: letrec f = \n. if n==0 then 1 else n*f(n-1) in f 4 | Expected: 24.0 | Output: 24.0 
+True | interpreter | Input: 1 | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: (if 1 == 1 then \x.x+1 else \x.x+2) 5 + 10 | Expected: 16.0 | Output: 16.0 
+True | interpreter | Input: if 1 == 1 then 1 else 2 + 1 | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: 1 ;; 2 | Expected: 1.0 ;; 2.0 | Output: 1.0 ;; 2.0 
+True | interpreter | Input: 1 ;; 2 ;; 3 | Expected: 1.0 ;; 2.0 ;; 3.0 | Output: 1.0 ;; 2.0 ;; 3.0 
+True | interpreter | Input: 1+1 ;; (\x.x)a ;; (\x.x+x)2 | Expected: 2.0 ;; a ;; 4.0 | Output: 2.0 ;; a ;; 4.0 
+True | interpreter | Input: 1:2 ;; 1:2:# | Expected: (1.0 : 2.0) ;; (1.0 : (2.0 : #)) | Output: (1.0 : 2.0) ;; (1.0 : (2.0 : #)) 
+True | interpreter | Input: (1) | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: # | Expected: # | Output: # 
+True | interpreter | Input: 1:2:3:# | Expected: (1.0 : (2.0 : (3.0 : #))) | Output: (1.0 : (2.0 : (3.0 : #))) 
+True | interpreter | Input: (\x.x) # | Expected: # | Output: # 
+True | interpreter | Input: (\x.\y.y) a 1:# | Expected: (1.0 : #) | Output: (1.0 : #) 
+True | interpreter | Input: let f = \x.x+1 in (f 1) : (f 2) : (f 3) : # | Expected: (2.0 : (3.0 : (4.0 : #))) | Output: (2.0 : (3.0 : (4.0 : #))) 
+True | interpreter | Input: 1:2 == 1:2 | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: 1:2 == 1:3 | Expected: 0.0 | Output: 0.0 
+True | interpreter | Input: 1:2:# == 1:2:# | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: (1-2) : (2+2) : # == (-1):4:# | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: hd a | Expected: (hd a) | Output: (hd a) 
+True | interpreter | Input: hd (1:2:#) | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: hd 1:2:# | Expected: 1.0 | Output: 1.0 
+True | interpreter | Input: tl a | Expected: (tl a) | Output: (tl a) 
+True | interpreter | Input: tl (1:2:#) | Expected: (2.0 : #) | Output: (2.0 : #) 
+True | interpreter | Input: tl 1:2:# | Expected: (2.0 : #) | Output: (2.0 : #) 

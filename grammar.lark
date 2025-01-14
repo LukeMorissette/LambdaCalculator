@@ -1,0 +1,44 @@
+// grammar.lark
+start: expression
+
+// Expressions
+expression: conditional
+          | let_binding
+          | arithmetic
+          | lambda_expression
+
+// Conditional Expression
+conditional: "if" expression "then" expression "else" expression
+
+// Let Bindings
+let_binding: "let" CNAME "=" expression "in" expression
+
+// Lambda Calculus
+lambda_expression: "lambda" CNAME "." expression
+                 | application
+                 | variable
+
+application: expression expression
+variable: CNAME
+
+// Arithmetic Expressions
+arithmetic: term ((ADD | SUB) term)*
+term: factor ((MUL | DIV) factor)*
+factor: base (POW base)*
+base: NUMBER -> number
+    | "-" base -> neg
+    | "(" expression ")"
+
+// Operators
+ADD: "+"
+SUB: "-"
+MUL: "*"
+DIV: "/"
+POW: "^"
+
+// Terminals
+%import common.CNAME   // Variable names
+%import common.NUMBER  // Numbers
+%import common.WS      // Whitespace
+%ignore WS
+

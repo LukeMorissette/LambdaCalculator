@@ -1,0 +1,30 @@
+?start: exp
+
+?exp: "\\" NAME "." exp                     -> lam
+     | exp "==" exp                         -> eq
+     | exp ">=" exp                         -> geq
+     | exp "<=" exp                         -> leq
+     | exp "+" exp                          -> add
+     | exp "-" exp                          -> sub
+     | exp "*" exp                          -> mul
+     | exp "/" exp                          -> div
+     | "-" exp                              -> neg
+     | "if" exp "then" exp "else" exp       -> conditional
+     | "let" NAME "=" exp "in" exp          -> let
+     | "letrec" NAME "=" exp "in" exp       -> letrec
+     | exp ":" exp                          -> cons
+     | exp1
+
+?exp1: exp1 exp2                            -> app
+      | exp2
+
+?exp2: NAME                                -> var
+      | NUMBER                              -> number
+      | "(" exp ")"                         
+      | "#"                                 -> empty
+
+NAME: /[a-z_][a-zA-Z0-9_]*/
+NUMBER: /\d+(?:\.\d+)?/
+
+%import common.WS
+%ignore WS
