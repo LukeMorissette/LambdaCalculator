@@ -24,7 +24,7 @@ It was adapted from work done by Alex Kurz from the repository: https://codeberg
 
 ## Running the Program
 
-- python interpreter.py "<lambda expression>"
+- python interpreter.py "lambda expression"
 
 ## Expression Types
 
